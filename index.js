@@ -18,12 +18,12 @@ db.connect();
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
-app.set("view engine", "ejs");
+app.set("view engine", "ejs");// Set EJS as the templating engine
 
 let items = []; // In-memory list of items, will be populated from the database on each request
 
 async function getItems() { // Function to fetch items from the database
-  const results = await db.query("SELECT * FROM items"); // Execute the SQL query to get all items from the "items" table
+  const results = await db.query("SELECT * FROM items ORDER BY created_at ASC, id ASC"); // Execute the SQL query to get all items from the "items" table
   items = results.rows; // Update the in-memory list of items with the results from the database
 }
 

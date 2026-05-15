@@ -12,9 +12,16 @@
           <input type="checkbox" onchange="this.form.submit()" name="deleteItemId" value="<%= item.id %>">
         </form>
 
-        <p id="title<%=item.id%>">
-          <%= item.title %>
-        </p>
+        <div class="item-content" id="title<%=item.id%>">
+          <p>
+            <%= item.title %>
+          </p>
+          <% if (item.created_at) { %>
+            <small class="created-at">
+              Created: <%= new Date(item.created_at).toLocaleString() %>
+            </small>
+          <% } %>
+        </div>
 
         <form class="edit" action="/edit" method="post">
           <input type="hidden" name="updatedItemId" value="<%= item.id %>">
